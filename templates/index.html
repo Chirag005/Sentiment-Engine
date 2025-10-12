@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multilingual Sentiment Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Panel - Text Analysis -->
+        <div class="panel left-panel">
+            <h2 class="panel-title">Text Analysis</h2>
+            <p class="panel-subtitle">Enter text to analyze sentiment</p>
+            
+            <div class="input-section">
+                <textarea 
+                    id="textInput" 
+                    placeholder="With Kaiser, everything changed. The dog wasn't trained; he simply knew. If Leo walked too far toward the deep ravines near the river, Kaiser would plant his short legs and refuse to budge, letting out a series of low, insistent grumbles that sounded suspiciously like 'No, thank you.' If Leo veered toward the winding path that always led him back to the dilapidated old logging shack, Kaiser would trot ahead, his tail flicking with purpose, guiding him to the familiar scent of their own backyard."
+                ></textarea>
+                
+                <div class="input-controls">
+                    <div class="language-selector">
+                        <select id="languageSelect">
+                            <option value="auto">🌐 Auto-detect</option>
+                            <option value="en">🇺🇸 English</option>
+                            <option value="es">🇪🇸 Spanish</option>
+                            <option value="fr">🇫🇷 French</option>
+                            <option value="de">🇩🇪 German</option>
+                        </select>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button id="clearBtn" class="btn-secondary">Clear</button>
+                        <button id="analyzeBtn" class="btn-primary">Analyze Sentiment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Panel - Analysis Results -->
+        <div class="panel right-panel">
+            <h2 class="panel-title">Analysis Results</h2>
+            
+            <div id="resultsContainer" class="results-container">
+                <div id="loadingState" class="loading-state hidden">
+                    <div class="spinner"></div>
+                    <p>Analyzing sentiment...</p>
+                </div>
+                
+                <div id="resultsContent" class="results-content hidden">
+                    <!-- Sentiment Display -->
+                    <div class="sentiment-display">
+                        <div id="sentimentIcon" class="sentiment-icon">😐</div>
+                        <div id="sentimentLabel" class="sentiment-label">Neutral</div>
+                    </div>
+                    
+                    <!-- Confidence Score -->
+                    <div class="confidence-section">
+                        <div class="confidence-header">
+                            <span class="confidence-title">Confidence Score</span>
+                        </div>
+                        
+                        <div class="confidence-meter">
+                            <div class="confidence-bar">
+                                <div id="confidenceProgress" class="confidence-progress"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Info Section -->
+                    <div class="info-section">
+                        <div class="info-item">
+                            <span class="info-label">Language:</span>
+                            <span id="detectedLanguage" class="info-value">Spanish</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Processing Time:</span>
+                            <span id="processingTime" class="info-value">0.07s</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="initialState" class="initial-state">
+                    <div class="welcome-icon">🌍</div>
+                    <h3>Welcome to Sentiment Analysis</h3>
+                    <p>Enter text and click "Analyze Sentiment" to see results with confidence scoring.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
